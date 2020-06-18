@@ -1,6 +1,6 @@
-#Aplikasi Prakiraan Cuaca Menggunakan SLIM Framework
+# Aplikasi Prakiraan Cuaca Menggunakan SLIM Framework
 
-Pada project berikut kelompok kami yang beranggotakan 4 orang membuat aplikasi prakiraan cuaca
+Pada project berikut kelompok 5 yang beranggotakan 4 orang membuat aplikasi prakiraan cuaca
 
     1184102 - Rizaluardi Achmad Pratama [Fungsi CRUD tabel Stasiun Cuaca dan Informasi,dan API_KEY]
 	1184093 - Kaisar Abdan [Fungsi koneksi ke database dan memperbaiki error]
