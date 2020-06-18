@@ -1,3 +1,13 @@
+#Aplikasi Prakiraan Cuaca Menggunakan SLIM Framework
+
+Pada project berikut kelompok kami yang beranggotakan 4 orang membuat aplikasi prakiraan cuaca
+
+    1184102 - Rizaluardi Achmad Pratama [Fungsi CRUD tabel Stasiun Cuaca dan Informasi,dan API_KEY]
+	1184093 - Kaisar Abdan [Fungsi koneksi ke database dan memperbaiki error]
+	1184087 - Okky Yudistira [Database beserta Relasi antar tabel]
+	1184112 - Ferdy Berliano Putra [Fungsi CRUD tabel cuaca dan daerah]
+
+
 # Slim Framework 3 Skeleton Application
 
 Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
