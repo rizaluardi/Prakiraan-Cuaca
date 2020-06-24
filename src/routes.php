@@ -14,6 +14,7 @@ return function (App $app) {
         // Render index view
         return $container->get('renderer')->render($response, 'index.phtml', $args);
     });
+
     //bapak Rizal
 //fungsi select
     $app->get("/stasiun_cuaca/", function (Request $request, Response $response){
@@ -185,9 +186,9 @@ $app->get("/cuaca/", function (Request $request, Response $response){
 //fungsi select dengan id
     $app->get("/cuaca/{id}", function (Request $request, Response $response, $args){
         $id = $args["id"];
-        $sql = "SELECT * FROM cuaca WHERE id=:id";
+        $sql = "SELECT * FROM cuaca WHERE kode_cuaca=:kode_cuaca";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([":id" => $id]);
+        $stmt->execute([":kode_cuaca" => $id]);
         $result = $stmt->fetch();
         return $response->withJson(["status" => "success", "data" => $result], 200);
     });
@@ -221,11 +222,11 @@ $app->get("/cuaca/", function (Request $request, Response $response){
     $app->put("/cuaca/{id}", function (Request $request, Response $response, $args){
         $id = $args["id"];
         $new_cuaca = $request->getParsedBody();
-        $sql = "UPDATE cuaca SET parameter=:parameter created=:created WHERE id=:id";
+        $sql = "UPDATE cuaca SET parameter=:parameter created=:created WHERE kode_cuaca=:kode_cuaca";
         $stmt = $this->db->prepare($sql);
         
         $data = [
-            ":id" => $id,
+            ":kode_cuaca" => $id,
             ":parameter" => $new_cuaca["parameter"]
         ];
     
@@ -237,11 +238,11 @@ $app->get("/cuaca/", function (Request $request, Response $response){
 //fungsi delete
     $app->delete("/cuaca/{id}", function (Request $request, Response $response, $args){
         $id = $args["id"];
-        $sql = "DELETE FROM cuaca WHERE id=:id";
+        $sql = "DELETE FROM cuaca WHERE kode_cuaca=:kode_cuaca";
         $stmt = $this->db->prepare($sql);
         
         $data = [
-            ":id" => $id
+            ":kode_cuaca" => $id
         ];
     
         if($stmt->execute($data))
@@ -249,6 +250,7 @@ $app->get("/cuaca/", function (Request $request, Response $response){
         
         return $response->withJson(["status" => "failed", "data" => "0"], 200);
     });
+//daerah
 //fungsi select
  $app->get("/daerah/", function (Request $request, Response $response){
         $sql = "SELECT * FROM daerah";
@@ -260,9 +262,9 @@ $app->get("/cuaca/", function (Request $request, Response $response){
 //fungsi select dengan id
     $app->get("/daerah/{id}", function (Request $request, Response $response, $args){
         $id = $args["id"];
-        $sql = "SELECT * FROM daerah WHERE id=:id";
+        $sql = "SELECT * FROM daerah WHERE kode_daerah=:kode_daerah";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([":id" => $id]);
+        $stmt->execute([":kode_daerah" => $id]);
         $result = $stmt->fetch();
         return $response->withJson(["status" => "success", "data" => $result], 200);
     });
@@ -297,11 +299,11 @@ $app->get("/cuaca/", function (Request $request, Response $response){
     $app->put("/daerah/{id}", function (Request $request, Response $response, $args){
         $id = $args["id"];
         $new_daerah = $request->getParsedBody();
-        $sql = "UPDATE daerah SET provinsi=:provinsi, kota=:kota  WHERE id=:id";
+        $sql = "UPDATE daerah SET provinsi=:provinsi, kota=:kota  WHERE kode_daerah=:kode_daerah";
         $stmt = $this->db->prepare($sql);
         
         $data = [
-            ":id" => $id,
+            ":kode_daerah" => $id,
             ":provinsi" => $new_daerah["provinsi"],
             ":kota" => $new_daerah["kota"]
         ];
@@ -314,11 +316,11 @@ $app->get("/cuaca/", function (Request $request, Response $response){
 //fungsi delete
     $app->delete("/daerah/{id}", function (Request $request, Response $response, $args){
         $id = $args["id"];
-        $sql = "DELETE FROM daerah WHERE id=:id";
+        $sql = "DELETE FROM daerah WHERE kode_daerah=:kode_daerah";
         $stmt = $this->db->prepare($sql);
         
         $data = [
-            ":id" => $id
+            ":kode_daerah" => $id
         ];
     
         if($stmt->execute($data))

@@ -11,7 +11,7 @@ $app->add(function ($request, $response, $next) {
     $key = $request->getQueryParam("key");
 
     if(!isset($key)){
-        return $response->withJson(["status" => "API Key required"], 401);
+        return $response->withJson(["status" => "401 API Key required"], 401);
     }
     
     $sql = "SELECT * FROM api_users WHERE api_key=:api_key";

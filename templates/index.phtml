@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>Slim 3</title>
+        <title>Aplikasi Prakiraan Cuaca BMKG dengan Slim 3</title>
         <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
         <style>
             body {
@@ -11,11 +11,11 @@
                 width: 100%;
                 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
                 text-align: center;
-                color: #aaa;
                 font-size: 18px;
+                background-image: url("https://serving.photos.photobox.com/42162458cceca3606751f144da2eedd765199c3e928e8489287c5d1cfb12991d3bec4665.jpg"); ;
             }
 
-            h1 {
+            h2 {
                 color: #719e40;
                 letter-spacing: -3px;
                 font-family: 'Lato', sans-serif;
@@ -23,16 +23,119 @@
                 font-weight: 200;
                 margin-bottom: 0;
             }
+
+            .wew{
+                float: left;
+                padding: 40;
+                border-radius: 25px;
+                width: 49%;
+                height: 250px;
+                color: white;
+                background: black;
+                opacity: 0.5;
+            }
+            .wew2{
+                float: right;
+                padding: 10;
+                border-radius: 25px;
+                width: 49%;
+                height: 250px;
+                color: white;
+                background: black;
+                opacity: 0.5;
+            }
+
+ul {
+  list-style-type: none;
+}
+            table, th, td {
+
+  border: 1px solid black;
+  background: lightblue;
+}
+
+footer{
+    background: rgb(136, 136, 136);
+}
+
         </style>
     </head>
     <body>
-        <h1>Slim</h1>
-        <div>a microframework for PHP</div>
+        <h2>Prakiraan Cuaca Menggunakan SLIM</h1>
+             <div>Sebuah Web Prakiraan Cuaca Menggunakan SLIM Dikerjakan Perkelompok</div>
+            <p><hr>
+                
+                    <div>Endpoint 3 tabel menggunakan View dan Inner Join</div>
+            
+<center>
+        <?php
+$db_host = 'localhost'; // Nama Server
+$db_user = 'root'; // User Server
+$db_pass = ''; // Password Server
+$db_name = 'bmkg'; // Nama Database
 
-        <?php if (isset($name)) : ?>
-            <h2>Hello <?= htmlspecialchars($name); ?>!</h2>
-        <?php else: ?>
-            <p>Try <a href="http://www.slimframework.com">SlimFramework</a></p>
-        <?php endif; ?>
+$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+if (!$conn) {
+    die ('Gagal terhubung MySQL: ' . mysqli_connect_error());   
+}
+
+$sql = 'SELECT id, provinsi, kota, parameter, tanggal FROM endpoint';
+        
+$query = mysqli_query($conn, $sql);
+
+if (!$query) {
+    die ('SQL Error: ' . mysqli_error($conn));
+}
+
+echo '<table>
+        <thead>
+            <tr>
+                <th>ID INFORMASI</th>
+                <th>Provinsi</th>
+                <th>Kota</th>
+                <th>Parameter</th>
+                <th>Tanggal</th>
+            </tr>
+        </thead>
+        <tbody>';
+        
+while ($row = mysqli_fetch_array($query))
+{
+    echo '<tr>
+            <td>'.$row['id'].'</td>
+            <td>'.$row['provinsi'].'</td>
+            <td>'.$row['kota'].'</td>
+            <td>'.$row['parameter'].'</td>
+            <td>'.$row['tanggal'].'</td>
+        </tr>';
+}
+echo '
+    </tbody>
+</table>';
+mysqli_free_result($query);
+mysqli_close($conn);
+
+?>
+  </tr>
+</table>
+</center>
+
+<p>
+
+    <div class="wew"><h3>Kelompok 5</h3>
+                    <p>1184102 - Rizaluardi Achmad Pratama [Fungsi CRUD tabel Stasiun Cuaca Informasi, API_KEY]
+                    <p>1184093 - Kaisar Abdan [Fungsi koneksi ke database dan memperbaiki error]
+                    <p>1184087 - Okky Yudistira [Database beserta Relasi antar tabel]
+                    <p>1184112 - Ferdy Berliano Putra [Fungsi CRUD tabel cuaca dan daerah] 
+                </div>
+                    <div class="wew2"><h3>Pemanggilan</h3>
+                        <ul>
+                            <li>/cuaca (Untuk menampilkan endpoint dari tabel cuaca)</li>
+                            <li>/daerah (Untuk menampilkan endpoint dari tabel daerah)</li>
+                            <li>/informasi (Untuk menampilkan endpoint dari tabel informasi)</li>
+                            <li>/stasiun_cuaca (Untuk menampilkan endpoint dari tabel stasiun_cuaca)</li>
+                        </ul></div>
+
+
     </body>
 </html>
